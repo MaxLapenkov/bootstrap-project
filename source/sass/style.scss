@@ -1,0 +1,370 @@
+@import "normalize.scss";
+@import "../bootstrap-scss/bootstrap.scss";
+@import "variables.scss";
+
+@mixin background-img($src) {
+  background-image: url($src);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@mixin gradient($color1, $color2, $color3) {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    to right,
+    $color1 0%,
+    $color2 50%,
+    $color3 100%
+  );
+  opacity: 0.6;
+}
+@mixin input($placeholder-color) {
+  &::-webkit-input-placeholder {
+    color: $placeholder-color;
+  }
+}
+html {
+  font-size: 10px;
+}
+body {
+  font-size: 16px;
+  background-color: $divider-color;
+  color: $secondary-text-color;
+}
+
+.btn {
+  border: 2px solid $primary-color;
+  color: $primary-color;
+  border-radius: 0.5rem;
+  font-size: 1em;
+  padding: 1rem 2rem;
+  transition: all 0.2s;
+  &:hover {
+    background-color: $primary-color;
+    color: $primary-color-text;
+  }
+}
+.btn-inverse {
+  border: 2px solid $primary-color;
+  background-color: $primary-color;
+  color: $primary-color-text;
+  border-radius: 0;
+  font-size: 1em;
+  padding: 1rem 2rem;
+  transition: all 0.2s;
+  &:hover {
+    background-color: transparent;
+    color: $primary-color;
+  }
+}
+.container {
+  padding: 0;
+}
+//Заголовок
+.title {
+  overflow: hidden;
+  text-align: center;
+  h4 {
+    font-weight: bold;
+    color: $secondary-text-color;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 2rem 0;
+    padding: 2rem;
+    font-size: 1.5em;
+  }
+  &::before,
+  &::after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 20%;
+    height: 1rem;
+    background-color: $primary-color;
+    position: relative;
+    opacity: 0.5;
+  }
+  &::before {
+    margin-left: -100%;
+    left: 1.5rem;
+  }
+  &::after {
+    margin-right: -100%;
+    right: 1.5rem;
+  }
+}
+//Меню
+.navbar {
+  padding: 0.3rem 5rem;
+  border: 1px solid $primary-text-color;
+  .number-phone {
+    color: $primary-color;
+  }
+  .navbar-nav {
+    li.nav-item {
+      .nav-link {
+        color: $primary-text-color;
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+    li.active {
+      .nav-link {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+//Шапка
+header {
+  @include background-img("../img/header.png");
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 15rem 3rem;
+  p {
+    color: $secondary-text-color;
+  }
+  h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: $secondary-text-color;
+    span {
+      color: $primary-color;
+    }
+  }
+  form {
+    border: double 1rem $primary-color-text;
+    .form__wrapper {
+      background-color: rgba($primary-color-text, 0.95);
+      padding: 1.5rem;
+    }
+    span {
+      color: $primary-color;
+      font-weight: bold;
+      font-size: 1em;
+    }
+    input {
+      width: 100%;
+      padding: 1rem;
+      background-color: transparent;
+      border: 2px solid $primary-color;
+      border-radius: 0.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+      @include input($primary-color);
+    }
+  }
+}
+//Популярные категории
+.popcat {
+  @include background-img("../img/background.jpg");
+
+  padding-bottom: 4rem;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    p {
+      padding: 0;
+      margin: 0;
+      font-weight: bold;
+      color: $primary-color-text;
+      text-shadow: 0 0 3px $primary-text-color;
+      font-size: 1em;
+      z-index: 100;
+      transition: all 1s;
+      position: absolute;
+    }
+    img {
+      transition: all 0.5s;
+    }
+    &:hover {
+      img {
+        background-color: $primary-color-light;
+        transform: scale(1.1);
+      }
+      p {
+        transform: scale(0.9);
+      }
+    }
+  }
+}
+//Преимущества
+.adv {
+  @include background-img("../img/bg2.jpg");
+
+  position: relative;
+  color: $primary-color-text;
+
+  &::before {
+    @include gradient(
+      $primary-color-dark,
+      $primary-color,
+      $primary-color-light
+    );
+  }
+  .row {
+    padding: 3rem 0;
+  }
+  h6 {
+    margin: 1rem 0;
+    font-weight: bold;
+    font-size: 1em;
+  }
+  p {
+    font-size: 0.7em;
+  }
+}
+//Популярные товары
+.popgoods {
+  @include background-img("../img/background.jpg");
+  .row {
+    padding-bottom: 3rem;
+    &:first-child {
+      padding-bottom: 0;
+    }
+  }
+  h6 {
+    font-size: 1em;
+  }
+}
+.purchase {
+  position: relative;
+  @include background-img("../img/fiedback.png");
+  &::before {
+    @include gradient(
+      $primary-color-dark,
+      $primary-color,
+      $primary-color-light
+    );
+  }
+  .row {
+    padding: 3rem 0;
+  }
+  h5 {
+    font-size: 1.2em;
+  }
+  h6 {
+    font-size: 1em;
+  }
+  p {
+    font-size: 0.8em;
+  }
+  img {
+    margin-bottom: 1.5rem;
+    transition: all 0.5s;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+  input {
+    color: $primary-color-text;
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: 2px solid $primary-color-text;
+    margin-bottom: 1rem;
+    @include input($primary-color-text);
+  }
+  button {
+    color: $primary-color-text;
+    border: 2px solid $primary-color-text;
+    padding: 1rem;
+  }
+}
+//Отзывы
+.reviews {
+  padding-bottom: 3rem;
+  @include background-img("../img/background.jpg");
+  .card {
+    height: 100%;
+    h5 {
+      font-size: 1em;
+      color: $primary-color;
+    }
+  }
+  .carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23#{$pr-color}' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+  }
+  .carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23#{$pr-color}' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+  }
+}
+//Футер
+footer {
+  border: 1px solid $primary-text-color;
+  color: $primary-text-color;
+
+  menu {
+    a.active {
+      color: $primary-color;
+    }
+    a {
+      color: $primary-text-color;
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  p {
+    span {
+      color: $primary-color;
+    }
+  }
+}
+@media screen and (max-width: 992px) {
+  body {
+    font-size: 20px;
+  }
+  header {
+    padding: 3rem 0rem;
+  }
+  .purchase{
+    button{
+      margin-bottom: 1.5rem;
+    }
+  }
+  .popgoods {
+    .row {
+      padding-bottom: 0;
+      .title {
+        margin: 0;
+      }
+      h4 {
+        padding: 1rem;
+        margin: 1rem 3rem;
+      }
+      div {
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+  footer{
+    font-size: 0.8em;
+  }
+}
+@media screen and (max-width: 768px){
+  header{
+    p{
+      font-size: 0.8em;
+    }
+  }
+  .title{
+    &::before,
+    &::after{
+      content: "";
+      display: none;
+    }
+  }
+}
